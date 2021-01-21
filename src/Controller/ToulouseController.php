@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Toulouse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,9 +23,22 @@ class ToulouseController extends AbstractController
         );
         $content = $response->getContent();
         $decode = json_decode($content, true);
-        echo '<pre>';
-        var_dump($decode);
-        echo '</pre>';
+        dump($decode);
+        dump($decode["records"][0]["fields"]);
+
+        $commune = $decode["records"][0]["fields"]["commune"];
+        $zone = $decode["records"][0]["fields"]["zone"];
+        $voie = $decode["records"][0]["fields"]["voie"];
+        $adresse = $decode["records"][0]["fields"]["adresse"];
+        $precizion = $decode["records"][0]["fields"]["precision"];
+        $numero = $decode["records"][0]["fields"]["numero"];
+        $type = $decode["records"][0]["fields"]["geo_shape"]["type"];
+        $longitude = $decode["records"][0]["fields"]["geo_shape"]["coordinates"][0][1];
+        $latitude = $decode["records"][0]["fields"]["geo_shape"]["coordinates"][0][0];
+
+        dump(count($decode["records"]));
+
+
 
 
         return $this->render('toulouse/index.html.twig', [
