@@ -23,16 +23,42 @@ class ToulouseController extends AbstractController
         );
         $content = $response->getContent();
         $decode = json_decode($content, true);
-
-
-      foreach ($decode["records"] as $fields) {
-            dump($fields);
-            foreach ( $fields["fields"] as $commune) {
-                dump($commune);
+            foreach ($decode as $test) {
+                var_dump($test);
             }
-      }
+//            for ($i = 0; $i <= count($decode["records"]) -1; $i++)
+//            {
+//                dump($decode["records"][$i]);
+//            }
+//        foreach ($decode["records"] as $benne) {
+//            $ben = $benne["fields"];
+//            dump($ben);
 
-         /*vérifier si la donnée existe ou pas*/
+//            if (array_key_exists("commune", $ben)) {
+//                dump($ben["commune"]);
+//            } else {
+//                dump('commune not found');
+//            }
+//              //
+////            if (array_key_exists("numero", $ben)) {
+////                dump($ben["numero"]);
+////            } else {
+////                dump('numero not found');
+////            }
+///
+//            if (array_key_exists("voie", $ben)) {
+//                dump($ben["voie"]);
+//            } else {
+//                dump('voie not found');
+//            }
+//            if (array_key_exists("1", $ben['geo_shape']['coordinates'][0]) && (array_key_exists("0", $ben['geo_shape']['coordinates'][0]))) {
+//                dump($ben['geo_shape']['coordinates'][0][0].' '.$ben['geo_shape']['coordinates'][0][1] );
+//            } else {
+//                dump('latitude and longitude not found');
+//            }
+//        }
+
+        /*vérifier si la donnée existe ou pas*/
         /*$commune = $decode["records"][0]["fields"]["commune"];
         $longitude = $decode["records"][0]["fields"]["geo_shape"]["coordinates"][0][1];
         $latitude = $decode["records"][0]["fields"]["geo_shape"]["coordinates"][0][0];
@@ -43,23 +69,17 @@ class ToulouseController extends AbstractController
         $type = $decode["records"][0]["fields"]["geo_shape"]["type"];*/
 
 
-
-
-
-
-
         return $this->render('toulouse/index.html.twig', [
             'controller_name' => 'ToulouseController',
         ]);
     }
+
     private $client;
+
     public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
     }
-
-
-
 
 }
 
