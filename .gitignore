@@ -211,4 +211,6 @@ $RECYCLE.BIN/
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
+.idea/*
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,phpstorm+all,osx,composer,visualstudiocode
