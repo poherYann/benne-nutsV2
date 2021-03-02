@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Poitiers;
+use App\Entity\Poitier;
+use App\Repository\PoitierRepository;
+use App\Repository\PoitiersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -13,8 +16,14 @@ class PoitiersController extends AbstractController
 {
     /**
      * @Route("/poitiers", name="poitiers")
+     * @param PoitiersRepository $poitiersRepository
+     * @return Response
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    public function index(): Response
+    public function index(PoitierRepository $poitierRepository): Response
     {
 
         $response = $this->client->request(
@@ -27,34 +36,37 @@ class PoitiersController extends AbstractController
 
         $decode = json_decode($content, true);
 
-        dump($decode);
+        dump($decode["features"]);
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        for ($i = 0; $i <= count($decode["features"]) - 1; $i++) {
-            $key = $decode["features"][$i]["properties"];
 
-            if (isset($key["Adresse"]) && isset($key["Observation"]) && isset($decode["features"][$i]["geometry"]["coordinates"][1]) && isset($decode["features"][$i]["geometry"]["coordinates"][0])) {
-                $benne = new Poitiers();
-                $benne->setAdresse($key["Adresse"]);
-                $benne->setObservation($key["Observation"]);
-//              $benne->setAdresse($decode["features"][$i]["properties"]["Adresse"]);
-//              $benne->setObservation($decode["features"][$i]["properties"]["Observation"]);
-                $benne->setLatitude($decode["features"][$i]["geometry"]["coordinates"][1]);
-                $benne->setLongitude($decode["features"][$i]["geometry"]["coordinates"][0]);
+        if (count($decode["features"]) !== count($poitierRepository->findAll())) {
 
-                $entityManager->persist($benne);
+
+            for ($i = 0; $i <= count($decode["features"]) - 1; $i++) {
+//                $key = $decode["features"][$i]["properties"];
+
+                // verif si données dja existantes en bdd & comparer a celles deja présentes sur le json à insert
+                // si données > existantes et = > rien à faire
+                // insertion =/= inserré > update
+
+                if (isset($decode["features"][$i]["geometry"]["coordinates"][1]) && isset($decode["features"][$i]["geometry"]["coordinates"][0])) {
+                    $benne = new Poitier();
+                    $benne->setLatitude($decode["features"][$i]["geometry"]["coordinates"][1]);
+                    $benne->setLongitude($decode["features"][$i]["geometry"]["coordinates"][0]);
+
+                    $entityManager->persist($benne);
+                }
+
             }
-
+            $entityManager->flush();
+            return $this->render('poitiers/index.html.twig', [
+                'controller_name' => 'PoitiersController',
+            ]);
+        } else {
+            return new JsonResponse('Data already up to date');
         }
-
-
-        $entityManager->flush();
-
-
-        return $this->render('poitiers/index.html.twig', [
-            'controller_name' => 'PoitiersController',
-        ]);
     }
 
     private
