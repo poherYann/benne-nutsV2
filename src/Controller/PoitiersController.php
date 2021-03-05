@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Poitier;
-use App\Repository\PoitierRepository;
+use App\Entity\Poitiers;
 use App\Repository\PoitiersRepository;
+use phpDocumentor\Reflection\Utils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class PoitiersController extends AbstractController
 {
     /**
      * @Route("/poitiers", name="poitiers")
-     * @param PoitierRepository $poitierRepository
+     * @param PoitiersRepository $poitierRepository
      * @return Response
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
@@ -24,7 +24,7 @@ class PoitiersController extends AbstractController
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
 
-    public function index(PoitierRepository $poitierRepository): Response
+    public function index(PoitiersRepository $poitierRepository): Response
     {
 
         $response = $this->client->request(
@@ -53,9 +53,8 @@ class PoitiersController extends AbstractController
                 // verif si données dja existantes en bdd & comparer a celles deja présentes sur le json à insert
                 // si données > existantes et = > rien à faire
                 // insertion =/= inserré > update
-
                 if (isset($latitude) && isset($longitude)) {
-                    $benne = new Poitier();
+                    $benne = new Poitiers();
 
                     $benne->setLatitude($latitude);
                     $benne->setLongitude($longitude);
@@ -67,10 +66,12 @@ class PoitiersController extends AbstractController
             $entityManager->flush();
             return $this->render('poitiers/index.html.twig', [
                 'controller_name' => 'PoitiersController',
+                'showAllBenne' => $this->showAllBenne(),
             ]);
         } else {
             return $this->render('poitiers/index.html.twig', [
                 'controller_name' => 'PoitiersController',
+                'showAllBenne' => $this->showAllBenne(),
             ]);
         }
 
@@ -85,18 +86,12 @@ class PoitiersController extends AbstractController
         $this->client = $client;
     }
 
-    public function mapRequest(PoitierRepository $poitierRepository)
+    public function showAllBenne()
     {
 
-       $bennes = $poitierRepository->findAll();
-        for ($i=0; $i < count($bennes); $i++){
-            $ben = array(
-                'latitude' => $bennes[$i]->getLatitude(),
-                'longitude' => $bennes[$i]->getLongitude(),
-            );
-            array_push($tab, $ben);
-        }
-
-        echo json_encode($tab);
+        $bennes = $this->getDoctrine()
+            ->getRepository(Poitiers::class)
+            ->findAll();
+        return $bennes;
     }
 }
