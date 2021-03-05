@@ -1,20 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PoitiersController!{% endblock %}
+{% block title %}Bennes de Poitiers{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <div id="map">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/web/benne-nutsV2/src/Controller/PoitiersController.php'|file_link(0) }}">src/Controller/PoitiersController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/web/benne-nutsV2/templates/poitiers/index.html.twig'|file_link(0) }}">templates/poitiers/index.html.twig</a></code></li>
-    </ul>
-</div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="col-lg-12">
+            <ul>
+                {{ dump(showAllBenne) }}
+            </ul>
+        </div>
+    </div>
+
 {% endblock %}
