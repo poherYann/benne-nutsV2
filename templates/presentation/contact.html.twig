@@ -1,1 +1,28 @@
-{% extends 'base.html.twig' %}
+{% block header %}
+	{% include 'common/header.html.twig' %}
+{% endblock %}
+
+{% block body %}
+	<div class="container_contact">
+		<form id="contact" action="" method="post">
+			<h3>Contactez-nous</h3>
+			<h4>Equipe Benne & nuts</h4>
+			<fieldset>
+				<input placeholder="Votre nom" type="text" tabindex="1" required autofocus>
+			</fieldset>
+			<fieldset>
+				<input placeholder="Votre adresse email" type="email" tabindex="2" required>
+			</fieldset>
+			<fieldset>
+				<input placeholder="Votre numéro de téléphone (pas obligatoire)" type="tel" tabindex="3">
+			</fieldset>
+			<fieldset>
+				<textarea placeholder="Ecrivez votre message ici...." tabindex="5" required></textarea>
+			</fieldset>
+			<fieldset>
+				<button name="submit" type="submit" id="contact-submit" data-submit="...Envoi en cour">Envoyer</button>
+			</fieldset>
+		</form>
+	</div>
+
+{% endblock %}
