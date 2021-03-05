@@ -66,12 +66,10 @@ class PoitiersController extends AbstractController
             $entityManager->flush();
             return $this->render('poitiers/index.html.twig', [
                 'controller_name' => 'PoitiersController',
-                'showAllBenne' => $this->showAllBenne(),
             ]);
         } else {
             return $this->render('poitiers/index.html.twig', [
                 'controller_name' => 'PoitiersController',
-                'showAllBenne' => $this->showAllBenne(),
             ]);
         }
 
@@ -86,12 +84,4 @@ class PoitiersController extends AbstractController
         $this->client = $client;
     }
 
-    public function showAllBenne()
-    {
-
-        $bennes = $this->getDoctrine()
-            ->getRepository(Poitiers::class)
-            ->findAll();
-        return $bennes;
-    }
 }
