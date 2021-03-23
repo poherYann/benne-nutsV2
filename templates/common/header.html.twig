@@ -1,41 +1,45 @@
-<!-- Vertical navbar -->
-<div class="vertical-nav bg-white" id="sidebar">
-  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="stylesheet" href="css/app.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-  <ul class="nav flex-column bg-white mb-0">
-    <li class="nav-item">
-      <a class="nav-link text-dark font-italic"  href="{{ path('index') }}">
-      Trouver une benne
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-dark font-italic"  href="{{ path('about') }}">
-      Qui sommes-nous
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-dark font-italic"  href="{{ path('contact') }}">
-      Contact
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-dark font-italic"  href="{{ path('incoming') }}">
-      A venir
-      </a>
-    </li>
-    
-  </ul>
+		{% block head %}{% endblock %}
+		<title>Benne & Nuts - Géolocalisation de bennes à verre</title>
+		{% block stylesheets %}{% endblock %}
 
+	</head>
 
-</div>
-<!-- End vertical navbar -->
+	<nav class="menu" tabindex="0">
+		<div class="smartphone-menu-trigger"></div>
+		<header class="avatar">
+			<img src="img/ben.png"/>
+		</header>
+		<ul>
+			<a href="{{ path('home') }}">
+				<li tabindex="0" class="icon-home">
 
-<body>
-  <!-- Page content holder -->
-  <div class="page-content p-5" id="content">
-    <!-- Toggle button -->
-    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
-
-  </div>
-  <!-- End demo content -->
-</body>
+					<span>
+						Accueil
+					</span>
+				</li>
+			</a>
+			<a href="{{ path('index') }}">
+				<li tabindex="0" class="icon-trash">
+					<span>
+						Trouver une benne
+					</span>
+				</li>
+			</a>
+			<a href="{{ path('contact') }}">
+				<li tabindex="0" class="icon-contact">
+					<span>
+						Contact
+					</span>
+				</li>
+			</a>
+		</ul>
+	</nav>
+</html>
