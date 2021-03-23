@@ -13,7 +13,9 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 50%;
+            right: 0;
+            width: 80%;
+            /*max-width: 1280px;*/
         }
 
         .marker {
@@ -35,23 +37,12 @@
         }
     </style>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-                <div id="map">
-
-                </div>
-            </div>
-            <div class="col-lg-2"></div>
-        </div>
-
-    </div>
-    <div class="container">
         <div class="col-lg-12">
-            <ul>
-                {{ showAllBenne }}
-            </ul>
+            <div id="map">
+
+            </div>
         </div>
     </div>
+
 
 {% endblock %}
