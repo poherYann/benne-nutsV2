@@ -7,7 +7,55 @@ jQuery(document).ready(function ($) {
     });
 
 // JS de mapbox
+    $.ajax({
+        url: '/mapbox/ajax',
+        type: 'POST',
+        dataType: 'json',
+        async: true,
 
+        success: function (data, status) {
+
+            console.log(data);
+            console.log(status)
+
+            // for (let i=0; i<data.length)
+            console.log(Object.keys(data).length);
+            console.log(data[0].latitude);
+
+            map.on('load', function () {
+                var geojson = {
+                    type: 'featureCollection',
+                    features: []
+                };
+
+                for (var i = 0; i < Object.keys(data).length; i++) {
+                    geojson.features.push({
+                        type: 'Feature',
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [data[i].longitude, data[i].latitude]
+                        },
+                        properties: {
+                            title: 'Benne à verre'
+                        }
+                    });
+                }
+
+                geojson.features.forEach(function (marker) {
+                    var el = document.createElement('div');
+                    el.className = 'marker';
+                    new mapboxgl.Marker(el)
+                        .setLngLat(marker.geometry.coordinates)
+                        .addTo(map)
+                        .setPopup(new mapboxgl.Popup({offset: 25})
+                            .setHTML('<h3>' + marker.properties.title + '</h3>'))
+                        .addTo(map);
+                });
+            });
+        }, error: function (xhr, textStatus, errorThrown) {
+            console.log('request failed');
+        }
+    });
     mapboxgl.accessToken = 'pk.eyJ1Ijoibm9saWZlcnR1IiwiYSI6ImNrbHJyazA4NjBzMnMybmxsbnU4d3pvbGgifQ.w8XPKpamGGHXCjs5ZJmW8g';
     var map = new mapboxgl.Map({
         container: 'map',
@@ -15,56 +63,5 @@ jQuery(document).ready(function ($) {
         center: [0.340375, 46.580224],
         zoom: 8
     });
-
-    $.ajax({
-
-        url: 'poitiers',
-        type: 'GET',
-
-        success: function (showAllBenne) {
-            var benne = JQuery.parseJSON(showAllBenne);
-            console.log(showAllBenne);
-            map.on('load', function () {
-
-                var geoJSON = {
-                    type: 'FeatureCollection',
-                };
-                var i;
-                for (i = 0; i < benne.length; i++) {
-                    geoJSON.features.push({
-                        type: 'Feature',
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [benne[i]['longitude'], benne[i]['latitude']]
-                        },
-                    })
-                }
-                map.loadImage(
-                    'https://i.imgur.com/JzCmtJG.png',
-                    function (error, image) {
-                        if (error) throw error;
-                        map.addImage('custom-marker', image);
-
-                        // Add a symbol layer
-                        map.addLayer({
-                            'id': 'points',
-                            'type': 'symbol',
-                            'source': 'points',
-                            'layout': {
-                                'icon-image': 'custom-marker',
-                                // get the title name from the source's "title" property
-                                'text-field': ['get', 'title'],
-                                'text-font': [
-                                    'Open Sans Semibold',
-                                    'Arial Unicode MS Bold'
-                                ],
-                                'text-offset': [0, 1.25],
-                                'text-anchor': 'top'
-                            }
-                        });
-                    }
-                );
-            })
-        },
-    })
 });
+
