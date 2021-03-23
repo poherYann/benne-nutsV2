@@ -3,37 +3,6 @@
 {% block title %}Bennes de Poitiers{% endblock %}
 
 {% block body %}
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
 
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 50%;
-        }
-    </style>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-                <div id="map">
-
-                </div>
-            </div>
-            <div class="col-lg-2"></div>
-        </div>
-
-    </div>
-    <div class="container">
-        <div class="col-lg-12">
-            <ul>
-                {{ dump(showAllBenne) }}
-            </ul>
-        </div>
-    </div>
 
 {% endblock %}
