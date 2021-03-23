@@ -18,7 +18,7 @@ use App\Repository\PoitiersRepository;
 class MapboxController extends AbstractController
 {
     /**
-     * @Route("/mapbox", name="mapbox")
+     * @Route("/poitiers", name="poitiers")
      */
     public function index(): Response
     {

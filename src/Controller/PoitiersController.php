@@ -15,7 +15,7 @@ use App\DataFixtures\AppFixtures;
 class PoitiersController extends AbstractController
 {
     /**
-     * @Route("/poitiers", name="poitiers")
+     * @Route("/bennes", name="bennes")
      * @param PoitiersRepository $poitierRepository
      * @return Response
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
