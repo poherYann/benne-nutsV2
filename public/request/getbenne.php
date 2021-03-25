@@ -1,0 +1,3 @@
+<?php
+
+"SELECT * FROM poitiers";

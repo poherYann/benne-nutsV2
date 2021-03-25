@@ -550,12 +550,14 @@ section.parallax.parallax-3 {
   font-weight: 100;
   font-size: 12px;
   line-height: 40px;
-  color: #777;
-  background: #4CAF50;
-  max-width: 700px;
+  min-height: 100vh;
+  height: 100%;
+  color:  #fff;
+  background: #5bc995;
   width: 100%;
   margin: 0 auto;
   position: relative;
+  padding: 6em;
 }
 
 #contact input[type="text"],
@@ -570,7 +572,7 @@ section.parallax.parallax-3 {
 #contact {
   background: #F9F9F9;
   padding: 25px;
-  margin: 150px 0 0 0;
+  margin: 20px 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border: 2px solid #5bc995;
 }
@@ -617,7 +619,7 @@ fieldset {
   -webkit-transition: border-color 0.3s ease-in-out;
   -moz-transition: border-color 0.3s ease-in-out;
   transition: border-color 0.3s ease-in-out;
-  border: 1px solid #aaa;
+  border: 1px solid #fff!important;
 }
 
 #contact textarea {
