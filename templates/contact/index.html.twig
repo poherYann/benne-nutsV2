@@ -23,11 +23,12 @@
 
             <div class="text-center">
                 <button id="contact" type="submit">Envoyer !</button>
+                {% if send == true %}
+                    <p style="color: red;">Votre message a bien été envoyé !</p>
+                {% endif %}
             </div>
 
-            {% if send == true %}
-                <p>Votre message a bien été envoyé !</p>
-            {% endif %}
+
 
     {{ form_end(form) }}
     </div>
