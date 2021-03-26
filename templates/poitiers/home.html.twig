@@ -1,92 +1,96 @@
 <body>
-	{% block header %}
-		{% include 'common/header.html.twig' %}
-	{% endblock %}
-	{% block body %}
-		<section class="parallax parallax-1">
-			<div class="container">
-				<h1>Benne & Nuts</h1>
-			</div>
-		</section>
+{% block header %}
+    {% include 'common/header.html.twig' %}
+{% endblock %}
+{% block body %}
+    <section class="parallax parallax-1">
+        <div class="container">
+            <h1>Benne & Nuts</h1>
+        </div>
+    </section>
 
-		<section class="content">
-			<div class="container">
+    <section class="content">
+        <div class="container">
 
-				<h2>Benne & Nuts : trouvez vos bennes à verre plus facilement</h2>
+            <h2>Benne & Nuts : trouvez vos bennes à verre plus facilement</h2>
 
-				<h3>Notre équipe</h3>
+            <h3>Notre équipe</h3>
 
-				<div class="information">
-					<div class="solo_info">
-						<img src="img/yann.jfif" alt="photo de nous">
-						<h3>Yann Poher</h3>
-						<p>Développeur Back-end</p>
-					</div>
-					<div class="solo_info">
-						<img src="img/victor.jfif" alt="photo de nous">
-						<h3>Victor Leroux</h3>
-						<p>Développeur Back-end</p>
-					</div>
-					<div class="solo_info">
-						<img src="img/guillaume.jfif" alt="photo de nous">
-						<h3>Guillaume Colombel</h3>
-						<p>Développeur Front</p>
-					</div>
-				</div>
+            <div class="information">
+                <div class="solo_info">
+                    <img src="img/yann.jfif" alt="photo de nous">
+                    <h3>Yann Poher</h3>
+                    <p>Développeur Back-end</p>
+                </div>
+                <div class="solo_info">
+                    <img src="img/victor.jfif" alt="photo de nous">
+                    <h3>Victor Leroux</h3>
+                    <p>Développeur Back-end</p>
+                </div>
+                <div class="solo_info">
+                    <img src="img/guillaume.jfif" alt="photo de nous">
+                    <h3>Guillaume Colombel</h3>
+                    <p>Développeur Front</p>
+                </div>
+            </div>
 
-			</div>
-		</section>
+        </div>
+    </section>
 
-		<section class="parallax parallax-2">
-			<div class="container">
-				<h1>Poitiers</h1>
-			</div>
-		</section>
+    <section class="parallax parallax-2">
+        <div class="container">
+            <h1>Poitiers</h1>
+        </div>
+    </section>
 
-		<section class="content">
-			<div class="container">
+    <section class="content">
+        <div class="container">
 
-				<h2>Le tri sélectif dans Poitiers :</h2>
+            <h2>Le tri sélectif dans Poitiers :</h2>
 
-				<div class="info_tri">
-					<img src="https://cdn.pixabay.com/photo/2014/02/27/16/10/tree-276014_1280.jpg" alt="photo de tri">
-					<p>Pour faciliter la vie des habitants de Poitiers, avec l’aide de la mairie, nous avons mis au point un dispositif vous permettant de localiser toutes les bennes à verre dans votre ville. Pour répondre à des problèmes environnementaux, Benne & Nuts vous propose une solution simple et en quelque clic pour vous accompagner vers la protection de la nature.</p>
-				</div>
+            <div class="info_tri">
+                <img src="https://cdn.pixabay.com/photo/2014/02/27/16/10/tree-276014_1280.jpg" alt="photo de tri">
+                <p>Pour faciliter la vie des habitants de Poitiers, avec l’aide de la mairie, nous avons mis au point un
+                    dispositif vous permettant de localiser toutes les bennes à verre dans votre ville. Pour répondre à
+                    des problèmes environnementaux, Benne & Nuts vous propose une solution simple et en quelque clic
+                    pour vous accompagner vers la protection de la nature.</p>
+            </div>
 
-			</div>
-		</section>
+        </div>
+    </section>
 
-		<section class="parallax parallax-3">
-			<div class="container">
-				<h1>Les bennes à verre</h1>
-			</div>
-		</section>
+    <section class="parallax parallax-3">
+        <div class="container">
+            <h1>Les bennes à verre</h1>
+        </div>
+    </section>
 
-		<section class="content">
-			<div class="container">
+    <section class="content">
+        <div class="container">
 
-				<h2>Les bennes à verre à votre disposition</h2>
+            <h2>Les bennes à verre à votre disposition</h2>
 
-				<div class="info_benne">
-					<p>💻 Cliquez sur "Trouver une benne"<br>
-						🚛 Trouver la benne la plus proche<br>
-						👍 Faites une bonne action pour la planette</p>
-					<img src="https://images.charentelibre.fr/2014/08/24/5645ced57971bb340f4db4e9/golden/google-maps.jpg" alt="photo de tri">
-				</div>
+            <div class="info_benne">
+                <p>💻 Cliquez sur "Trouver une benne"<br>
+                    🚛 Trouvez la benne la plus proche<br>
+                    👍 Faites une bonne action pour la planète</p>
+                <img src="https://images.charentelibre.fr/2014/08/24/5645ced57971bb340f4db4e9/golden/google-maps.jpg"
+                     alt="photo de tri">
+            </div>
 
-			</div>
-		</section>
-	{% endblock %}
+        </div>
+    </section>
+{% endblock %}
 
 
-	{% block footer %}
-		{% include 'common/footer.html.twig' %}
-	{% endblock %}
+{% block footer %}
+    {% include 'common/footer.html.twig' %}
+{% endblock %}
 
-	{% block javascripts %}
+{% block javascripts %}
 
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/app.js"></script>
-	{% endblock %}
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+{% endblock %}
 </body></html></body></html></body></body></html>
