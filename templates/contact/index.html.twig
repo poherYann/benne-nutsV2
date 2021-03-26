@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <div class="container_contact">
+    <h1 class="text-center">Contactez nous !</h1>
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+            {{ form_label(form.nom, "Votre Nom :") }}
+            {{ form_errors(form.nom) }}
+            {{ form_widget(form.nom) }}
+
+            {{ form_label(form.email, "Votre Email :") }}
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email) }}
+
+
+            {{ form_label(form.message, "Votre Message :") }}
+            {{ form_errors(form.message) }}
+            {{ form_widget(form.message) }}
+
+            <div class="text-center">
+                <button id="contact" type="submit">Envoyer !</button>
+                {% if send == true %}
+                    <p style="color: red;">Votre message a bien été envoyé !</p>
+                {% endif %}
+            </div>
+
+
+
+    {{ form_end(form) }}
+    </div>
+{% endblock %}
